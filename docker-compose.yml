@@ -9,10 +9,20 @@ services:
       - redis
     environment:
       ob_redis: '{"host": "redis", "port": 6379, "db": 0}'
+    labels:
+      - "com.centurylinklabs.watchtower.scope=octobot"
   redis:
     image: redis:6-alpine
     command: redis-server --appendonly yes
     volumes:
       - ob_redisvolume:/data
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.docker/config.json:/config.json
+    command: --interval 30 --scope octobot
+    labels:
+      - "com.centurylinklabs.watchtower.scope=octobot"
 volumes:
   ob_redisvolume:
