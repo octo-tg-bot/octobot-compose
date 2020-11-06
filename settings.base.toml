@@ -1,0 +1,64 @@
+# Telegram bot API token
+telegram_token = ""
+
+# Set to true if in production
+production = false
+
+# Telegram bot owner ID
+owner = 0
+
+# Thread amount
+threads = 4
+
+# Plugins not to load
+exclude_plugins = []
+
+# Support URL
+support_url = "https://example.com"
+
+# User-Agent used for cached requests
+user_agent = "OctoBot/4.0"
+
+# Mozambiquehe.re token for apex.py plugin
+mozamibque_here_token = ""
+
+# API Key for currency converter
+currency_converter_apikey = ""
+
+# Imgur API Client-ID
+imgur_clientid = ""
+
+# Allow only specific chats
+# If this value != [], then bot will attempt to leave all chats that are not in this list
+allowed_chats = []
+# Reason for bot leaving if allowed_chats != []
+disallowed_chat_reason = "I am sorry, I can't work in this chat cause it is not in allowed chats list."
+
+# Fallback image when bot failed to send image
+no_image = "https://gitlab.com/OctoNezd/octonezd.gitlab.io/-/raw/master/public/no_image.png"
+
+# Exception handling
+[exceptions]
+  # How error will be reported to user
+  # Allowed values:
+  # describe - shows error description to user. May leak data, dont use in production
+  # none - doesnt show any sort of error description to user
+  report_type = "describe"
+
+
+# Redis information
+[redis]
+  host = "localhost"
+  port = 6379
+  db = 0
+
+# Spamwatch settings
+[spamwatch]
+  # Default value is https://api.spamwat.ch
+  # You shouldn't change it in normal circumstances unless using staging API to test
+  api_host = "https://api.spamwat.ch"
+  # Spamwatch API token. Get it at t.me/SpamWatchBot
+  token = "not set"
+  # Default action
+  # Supported values: kick, ban, nothing
+  default_action = "kick"
