@@ -15,7 +15,7 @@ services:
       - redis
     deploy:
       restart_policy:
-        condition: on-failure
+        condition: always
         max_attempts: 3
   redis:
     image: redis:6-alpine
@@ -24,7 +24,7 @@ services:
       - ob_redisvolume:/data
     deploy:
       restart_policy:
-        condition: on-failure
+        condition: always
         max_attempts: 3
   watchtower:
     image: containrrr/watchtower
@@ -33,5 +33,9 @@ services:
     command: --interval 30 --scope octobot
     labels:
       - "com.centurylinklabs.watchtower.scope=octobot"
+    deploy:
+      restart_policy:
+        condition: always
+        max_attempts: 3
 volumes:
   ob_redisvolume:
