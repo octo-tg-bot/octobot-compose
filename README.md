@@ -23,3 +23,19 @@ This repository contains file for quick deployment of [Octo-Tg-Bot](https://gith
    ```
 
 5. The bot should send you message with results from booting up if you set everything up correctly.
+
+## Extra cool stuff!
+
+You can add that stuff by creating docker-compose.override.yml and putting that stuff into it
+
+### Receive update notifications in Telegram
+
+```yaml
+version: "3.8"
+services:
+  watchtower:
+    environment:
+      WATCHTOWER_NOTIFICATIONS_LEVEL: debug
+      WATCHTOWER_NOTIFICATIONS: shoutrrr
+      WATCHTOWER_NOTIFICATION_URL: "telegram://bot_token@telegram?channels=user_id"
+```
