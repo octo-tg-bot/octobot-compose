@@ -13,11 +13,15 @@ services:
       - "com.centurylinklabs.watchtower.scope=octobot"
     depends_on: 
       - redis
+    restart_policy:
+      condition: on-failure
   redis:
     image: redis:6-alpine
     command: redis-server --appendonly yes
     volumes:
       - ob_redisvolume:/data
+    restart_policy:
+      condition: on-failure
   watchtower:
     image: containrrr/watchtower
     volumes:
