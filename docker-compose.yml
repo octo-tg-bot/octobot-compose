@@ -16,7 +16,6 @@ services:
     deploy:
       restart_policy:
         condition: any
-        max_attempts: 3
   redis:
     image: redis:6-alpine
     command: redis-server --appendonly yes
@@ -25,7 +24,6 @@ services:
     deploy:
       restart_policy:
         condition: any
-        max_attempts: 3
   watchtower:
     image: containrrr/watchtower
     volumes:
@@ -36,6 +34,5 @@ services:
     deploy:
       restart_policy:
         condition: any
-        max_attempts: 3
 volumes:
   ob_redisvolume:
