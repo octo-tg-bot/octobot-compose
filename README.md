@@ -28,15 +28,29 @@ This repository contains file for quick deployment of [Octo-Tg-Bot](https://gith
 
 You can add that stuff by creating docker-compose.override.yml and putting that stuff into it
 
+### Automatically update bot with watchtower on webhook
+
+```yaml
+watchtower:
+    command:  --http-api --debug --scope octobot
+    ports:
+      - 8080:8080
+    environment:
+      WATCHTOWER_HTTP_API_TOKEN: "PUT SUPER SECURE TOKEN HERE!"
+```
+
+Make sure to set following secrets if you use the same deployment GitHub action:
+
+- WT_URL - url to update. For example: http://server:8080/v1/update
+- WT_TOKEN - your super secure token
+
 ### Receive update notifications in Telegram
 
 ```yaml
-version: "3.8"
-services:
-  watchtower:
-    environment:
-      WATCHTOWER_NOTIFICATIONS: shoutrrr
-      WATCHTOWER_NOTIFICATION_URL: "telegram://bot_token@telegram?channels=user_id"
+watchtower:
+  environment:
+    WATCHTOWER_NOTIFICATIONS: shoutrrr
+    WATCHTOWER_NOTIFICATION_URL: "telegram://bot_token@telegram?channels=user_id"
 ```
 
 ### Self-hosted bot API
