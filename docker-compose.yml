@@ -11,6 +11,8 @@ services:
       ob_redis: '{"host": "redis", "port": 6379, "db": 0}'
     labels:
       - "com.centurylinklabs.watchtower.scope=octobot"
+    depends_on: 
+      - redis
   redis:
     image: redis:6-alpine
     command: redis-server --appendonly yes

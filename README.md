@@ -38,3 +38,26 @@ services:
       WATCHTOWER_NOTIFICATIONS: shoutrrr
       WATCHTOWER_NOTIFICATION_URL: "telegram://bot_token@telegram?channels=user_id"
 ```
+
+### Self-hosted bot API
+
+> :warning: **If you are using the watchtower Telegram notifications, use different token in WATCHTOWER_NOTIFICATION_URL**. Bot API blocks out access to bot API after the the different endpoint is getting used, so Watchtower will fail when trying to send notifications
+
+```yaml
+version: "3.8"
+services:
+  botapi:
+    image: ghcr.io/octo-tg-bot/tgbotapi:latest
+    environment: 
+      TELEGRAM_API_ID: PUT THE API ID HERE
+      TELEGRAM_API_HASH: PUT THE API HASH HERE
+    labels:
+      - "com.centurylinklabs.watchtower.scope=octobot"
+  bot:
+    environment:
+      ob_telegram_base_url: "http://botapi/bot"
+      ob_telegram_base_file_url: "http://botapi/file/bot"
+    depends_on: 
+      - botapi
+      - redis
+```
