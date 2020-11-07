@@ -35,7 +35,6 @@ version: "3.8"
 services:
   watchtower:
     environment:
-      WATCHTOWER_NOTIFICATIONS_LEVEL: debug
       WATCHTOWER_NOTIFICATIONS: shoutrrr
       WATCHTOWER_NOTIFICATION_URL: "telegram://bot_token@telegram?channels=user_id"
 ```
