@@ -69,8 +69,6 @@ services:
       - "com.centurylinklabs.watchtower.scope=octobot"
     logging:
       driver: "none"
-    volumes:
-      - botapi_local:/tmp/tgbot
   bot:
     entrypoint: 'python3 main.py"'
     environment:
@@ -80,11 +78,4 @@ services:
     depends_on: 
       - botapi
       - redis
-    volumes:
-      - botapi_local:/tmp/tgbot
-volumes:
-  botapi_local:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
 ```
