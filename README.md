@@ -72,6 +72,8 @@ services:
     volumes:
       - botapi_local:/tmp/tgbot
   bot:
+    # Python-telegram-bot doesnt support file://, so we use patched version. Notice that patch is probably buggy as hell and might pose a security risk.
+    entrypoint: 'sh -c "apk add git py3-pip && pip install git+https://github.com/octo-tg-bot/python-telegram-bot.git && python3 main.py"'
     environment:
       ob_telegram_base_url: "http://botapi/bot"
       ob_telegram_base_file_url: "file://"
