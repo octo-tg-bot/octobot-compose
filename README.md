@@ -67,11 +67,22 @@ services:
       TELEGRAM_API_HASH: PUT THE API HASH HERE
     labels:
       - "com.centurylinklabs.watchtower.scope=octobot"
+    logging:
+      driver: "none"
+    volumes:
+      - botapi_local:/tmp/tgbot
   bot:
     environment:
       ob_telegram_base_url: "http://botapi/bot"
-      ob_telegram_base_file_url: "http://botapi/file/bot"
+      ob_telegram_base_file_url: "file://"
     depends_on: 
       - botapi
       - redis
+    volumes:
+      - botapi_local:/tmp/tgbot
+volumes:
+  botapi_local:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
 ```
