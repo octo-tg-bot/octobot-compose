@@ -74,7 +74,6 @@ services:
     environment:
       ob_telegram_base_url: "http://botapi/bot"
       ob_telegram_base_file_url: "http://botapi/file/bot"
-      ob_telegram_base_file_url_force: "true"
     depends_on: 
       - botapi
       - redis
