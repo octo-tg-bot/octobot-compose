@@ -32,7 +32,7 @@ You can add that stuff by creating docker-compose.override.yml and putting that 
 
 ```yaml
 watchtower:
-    command:  --http-api --debug --scope octobot
+    command:  --http-api-update --debug --scope octobot
     ports:
       - 8080:8080
     environment:
@@ -69,12 +69,17 @@ services:
       - "com.centurylinklabs.watchtower.scope=octobot"
     logging:
       driver: "none"
+    volumes:
+      - botapi-files:/file
   bot:
-    entrypoint: 'python3 main.py"'
+    entrypoint: 'python3 main.py'
     environment:
       ob_telegram_base_url: "http://botapi/bot"
-      ob_telegram_base_file_url: "http://botapi/file/bot"
     depends_on: 
       - botapi
       - redis
+    volumes:
+      - botapi-files:/file
+volumes:
+  botapi-files:
 ```
