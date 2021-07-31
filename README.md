@@ -71,6 +71,9 @@ services:
       driver: "none"
     volumes:
       - botapi-files:/file
+    deploy:
+      restart_policy:
+        condition: any
   bot:
     entrypoint: 'python3 main.py'
     environment:
