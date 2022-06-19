@@ -20,6 +20,11 @@ services:
     volumes:
       - ob_redisvolume:/data
     restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
   watchtower:
     image: containrrr/watchtower
     volumes:
