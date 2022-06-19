@@ -13,17 +13,13 @@ services:
       - "com.centurylinklabs.watchtower.scope=octobot"
     depends_on: 
       - redis
-    deploy:
-      restart_policy:
-        condition: any
+    restart: always
   redis:
     image: redis:6-alpine
     command: redis-server --appendonly yes
     volumes:
       - ob_redisvolume:/data
-    deploy:
-      restart_policy:
-        condition: any
+    restart: always
   watchtower:
     image: containrrr/watchtower
     volumes:
@@ -31,8 +27,6 @@ services:
     command: --interval 30 --scope octobot
     labels:
       - "com.centurylinklabs.watchtower.scope=octobot"
-    deploy:
-      restart_policy:
-        condition: any
+    restart: always
 volumes:
   ob_redisvolume:
